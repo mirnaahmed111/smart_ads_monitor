@@ -1,0 +1,17 @@
+__pycache__/
+*.mp4
+*.avi
+*.mov
+*.jpg
+*.png
+*.jpeg
+*.zip
+*.tar
+*.gz
+*.whl
+env/
+venv/
+myenv/
+*.pyc
+*.log
+.cache/

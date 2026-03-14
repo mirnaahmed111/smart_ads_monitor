@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="shortcut icon" href="static/icon/OIP-removebg-preview.png" type="image/x-icon" sizes="64x64" >
+<title>لوحة إعلانات</title>
+<style>
+
+:root{
+  --primary-1: #c5d1dd; /* dark navy */
+  --primary-2: #1c69b6; /* uni blue */
+  --bg-gradient: linear-gradient(135deg, var(--primary-1) 0%, var(--primary-2) 100%);
+  --card-bg: #ffffff;
+  --muted-bg: #f3f6fb;
+  --button-start: #002e5b;
+  --button-end: #0066cc;
+  --badge-urgent: #c62828;
+  --badge-ordinary: #d4af37; /* gold */
+}
+
+/* Base styling */
+body {
+    font-family: 'Segoe UI', sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    padding: 20px;
+    margin: 0;
+}
+.container {
+    max-width: 900px;
+    margin: auto;
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+    overflow: hidden;
+}
+
+/* Header - Responsive Design */
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1vw;
+  padding: clamp(8px, 2vw, 18px);
+  background: var(--bg-gradient);
+  color: #fff;
+  flex-wrap: nowrap;
+  min-height: 80px;
+}
+
+/* Logo containers */
+.header .logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  min-width: clamp(50px, 10vw, 90px);
+}
+
+/* Logo images - responsive sizing */
+.header .logo img {
+  height: clamp(60px, 12vw, 140px);
+  width: auto;
+  max-width: 100%;
+  display: block;
+  object-fit: contain;
+}
+
+/* Title section */
+.header .title {
+  flex: 1;
+  text-align: center;
+  padding: 0 clamp(8px, 2vw, 12px);
+  overflow: hidden;
+  min-width: 0; /* Allow flex item to shrink below content size */
+}
+
+/* Main title - responsive font */
+.header .title h1 {
+  margin: 0;
+  color: #fff;
+  font-size: clamp(1rem, 3.5vw, 2rem);
+  line-height: 1.2;
+  font-weight: 700;
+  white-space: normal;
+  word-break: break-word;
+}
+
+/* Subtitle - responsive font */
+.header .title h2 {
+  margin: clamp(3px, 0.8vw, 6px) 0 0;
+  color: #f1f1f1;
+  font-size: clamp(0.7rem, 2vw, 1rem);
+  line-height: 1.2;
+  font-weight: 500;
+  white-space: normal;
+  opacity: 0.95;
+}
+
+form {
+    padding: 25px;
+}
+
+input, select, textarea {
+    width: 100%;
+    margin-bottom: 15px;
+    padding: 12px;
+    border: 2px solid #e0e0e0;
+    border-radius: 10px;
+    font-size: 1rem;
+}
+
+button {
+    padding: 10px 15px;
+    background: linear-gradient(135deg, #667eea 0%, #2a287e 100%);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 0.9rem;
+}
+
+.files-section {
+    background: #f8f9fa;
+    padding: 20px;
+}
+
+.post {
+    background: white;
+    padding: 15px;
+    margin-bottom: 15px;
+    border-radius: 10px;
+    border-left: 4px solid #667eea;
+}
+
+.post img, .post video {
+    max-width: 100%;
+    height: auto;
+    margin-top: 10px;
+    border-radius: 10px;
+}
+
+.badge {
+    display: inline-block;
+    padding: 4px 10px;
+    border-radius: 8px;
+    font-size: 0.8rem;
+    font-weight: bold;
+    color: white;
+    margin-bottom: 8px;
+}
+
+.badge.urgent { background: #e63946; }
+.badge.ordinary { background: #2a9d8f; }
+
+/* Tablet and smaller screens */
+@media (max-width: 768px) {
+    body { 
+        padding: 10px; 
+    }
+    
+    .container { 
+        border-radius: 10px; 
+    }
+    
+    .header {
+        gap: 8px;
+        min-height: 70px;
+    }
+    
+    .header .title h1 {
+        font-size: clamp(0.9rem, 4vw, 1.5rem);
+    }
+    
+    .header .title h2 {
+        font-size: clamp(0.65rem, 2.5vw, 0.9rem);
+    }
+    
+    form { 
+        padding: 20px; 
+    }
+    
+    input, select, textarea, button { 
+        font-size: 0.9rem; 
+    }
+}
+
+/* Mobile phones */
+@media (max-width: 480px) {
+    body {
+        padding: 5px;
+    }
+    
+    .header {
+        gap: 6px;
+        padding: 10px 8px;
+        min-height: 60px;
+    }
+    
+    .header .logo {
+        min-width: 50px;
+    }
+    
+    .header .logo img {
+        height: clamp(50px, 15vw, 80px);
+    }
+    
+    .header .title h1 {
+        font-size: clamp(0.8rem, 4.5vw, 1.2rem);
+        line-height: 1.1;
+    }
+    
+    .header .title h2 {
+        font-size: clamp(0.6rem, 3vw, 0.8rem);
+        margin-top: 2px;
+    }
+    
+    input, select, textarea { 
+        padding: 10px; 
+        font-size: 0.85rem; 
+    }
+    
+    button { 
+        padding: 12px; 
+        font-size: 0.9rem; 
+    }
+    
+    .post { 
+        padding: 12px; 
+    }
+}
+
+/* Very small screens (< 360px) */
+@media (max-width: 360px) {
+    .header {
+        gap: 4px;
+        padding: 8px 5px;
+    }
+    
+    .header .logo {
+        min-width: 40px;
+    }
+    
+    .header .logo img {
+        height: clamp(40px, 18vw, 70px);
+    }
+    
+    .header .title h1 {
+        font-size: clamp(0.7rem, 5vw, 1rem);
+    }
+    
+    .header .title h2 {
+        font-size: clamp(0.55rem, 3.5vw, 0.75rem);
+    }
+}
+
+/* Landscape mode on mobile */
+@media (orientation: landscape) and (max-height: 500px) {
+    body { 
+        padding: 5px; 
+    }
+    
+    .header {
+        min-height: 50px;
+        padding: 8px;
+    }
+    
+    .header .logo img {
+        height: clamp(40px, 8vh, 60px);
+    }
+    
+    .header .title h1 {
+        font-size: clamp(0.9rem, 3vh, 1.3rem);
+    }
+    
+    .header .title h2 {
+        font-size: clamp(0.7rem, 2.5vh, 0.9rem);
+    }
+    
+    form { 
+        padding: 15px; 
+    }
+}
+
+/* Large screens */
+@media (min-width: 1200px) {
+    .header .logo img {
+        height: 140px;
+    }
+    
+    .header .title h1 {
+        font-size: 2rem;
+    }
+    
+    .header .title h2 {
+        font-size: 1rem;
+    }
+}
+</style>
+</head>
+<body>
+<div class="container">
+    <div class="header">
+        <!-- لوجو الشمال -->
+        <div class="logo logo-left">
+            <img src="{{ url_for('static', filename='images/logo-left.png') }}" alt="logo-left">
+        </div>
+
+        <!-- العنوان المركزي بخطين -->
+        <div class="title">
+            <h1>Educational Technology Department Bulletin Board</h1>
+            <h2>Faculty of Specific Education — Mansoura University</h2>
+        </div>
+
+        <!-- لوجو اليمين -->
+        <div class="logo logo-right">
+            <img src="{{ url_for('static', filename='images/logo-right.png') }}" alt="logo-right">
+        </div>
+    </div>
+    <!-- ======= نهاية الهيدر ======= -->
+
+
+    <!-- Post creation form -->
+    <form method="POST" enctype="multipart/form-data">
+        <label>Priority:</label>
+        <select name="priority" required>
+            <option value="ordinary">Ordinary</option>
+            <option value="urgent">Urgent</option>
+        </select>
+
+        <label>Text Content (Required):</label>
+        <textarea name="text_content" rows="3" placeholder="Write your ad..." required></textarea>
+
+        <label>Media Type:</label>
+        <select id="media_type" name="media_type" onchange="toggleMedia()" required>
+            <option value="image">Image</option>
+            <option value="video">Video</option>
+        </select>
+
+        <div id="image_input">
+            <label>Upload Image:</label>
+            <input type="file" id="image_file" name="image" accept="image/*">
+        </div>
+
+        <div id="video_input" style="display:none;">
+            <label>Upload Video:</label>
+            <input type="file" id="video_file" name="video" accept="video/*">
+        </div>
+
+        <button type="submit"> 🚀Post Advertisement</button>
+        <div id="progress-container" style="margin-top:15px; display:none;">
+            <progress id="progress-bar" value="0" max="100" style="width:100%;"></progress>
+            <span id="progress-text">0%</span>
+        </div>
+
+        <script>
+        document.querySelector('form').onsubmit = function(e) {
+            const form = this;
+            const progressContainer = document.getElementById('progress-container');
+            const progressBar = document.getElementById('progress-bar');
+            const progressText = document.getElementById('progress-text');
+
+            progressContainer.style.display = 'block';
+
+            const xhr = new XMLHttpRequest();
+            xhr.open('POST', '/', true);
+
+            xhr.upload.onprogress = function(e) {
+                if (e.lengthComputable) {
+                    const percent = (e.loaded / e.total) * 100;
+                    progressBar.value = percent;
+                    progressText.textContent = Math.round(percent) + '%';
+                }
+            };
+
+            xhr.onload = function() {
+                if (xhr.status === 200) {
+                    window.location.reload();
+                }
+            };
+
+            const formData = new FormData(form);
+            xhr.send(formData);
+            return false;
+        };
+        </script>
+    </form>
+
+    <!-- Posts list -->
+    <div class="files-section">
+        <h3>Current Posts:</h3>
+        {% for post in posts %}
+        <div class="post">
+            {% if post.text %}
+                {% if '[URGENT]' in post.text %}
+                    <span class="badge urgent">URGENT</span>
+                {% else %}
+                    <span class="badge ordinary">Ordinary</span>
+                {% endif %}
+                <p>{{ post.text }}</p>
+            {% endif %}
+            {% for img in post.images %}
+                <img src="{{ url_for('static', filename=img) }}">
+            {% endfor %}
+            {% for vid in post.videos %}
+                <video controls>
+                    <source src="{{ url_for('static', filename=vid) }}">
+                </video>
+            {% endfor %}
+
+            <!-- Delete button -->
+            <form action="{{ url_for('delete_post', post_name=post.name) }}" method="post" style="margin-top:10px;">
+                <button type="submit">🗑 Delete</button>
+            </form>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+<script>
+function toggleMedia(){
+    const type = document.getElementById('media_type').value;
+    const imageInput = document.getElementById('image_input');
+    const videoInput = document.getElementById('video_input');
+    const imageFile = document.getElementById('image_file');
+    const videoFile = document.getElementById('video_file');
+
+    if(type === 'image'){
+        imageInput.style.display = 'block';
+        videoInput.style.display = 'none';
+        imageFile.required = true;
+        videoFile.required = false;
+    } else {
+        imageInput.style.display = 'none';
+        videoInput.style.display = 'block';
+        imageFile.required = false;
+        videoFile.required = true;
+    }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,11 @@
+protobuf==3.20.*
+numpy
+opencv-python
+Flask
+pygame
+arabic-reshaper
+python-bidi
+matplotlib
+attrs
+absl-py
+flatbuffers
